@@ -2,6 +2,8 @@
 \usepackage{amsmath}
 \usepackage{amsfonts}
 \usepackage{amsthm}
+\usepackage{verbatim}
+\usepackage{url}
 \begin{document}
 
 \title{APPM 4510 HW1}
@@ -82,4 +84,29 @@ for $\mathbf{\delta x}$, and updating $\mathbf{x}\to\mathbf{x} + \gamma\mathbf{\
 \end{aligned}
 \]
 
+\subsection*{6(a)}
+\begin{proof}
+ By definition, we have
+ \[
+ E = \dfrac{1}{2}\sum\limits_j x_j^2\implies \dfrac{dE}{dt} =\sum\limits_j x_j \dot{x}_j .\tag{7}
+ \]
+Expanding the above sum from the Lorenz-'96 model, we have
+\[
+\begin{aligned}
+\dfrac{dE}{dt} &= \sum\limits_j x_j (x_{j+1}x_{j-1} - x_{j-2}x_{j-1} - x_j + F)\\
+&= F\sum\limits_j x_j + \sum\limits_j x_j(x_{j+1}x_{j-1} - x_{j-2}x_{j-1} - x_j)\\
+&= F\sum\limits_j x_j + \sum\limits_j x_jx_{j+1}x_{j-1} - x_{j-2}x_{j-1}x_j - x_j^2
+\end{aligned}
+\]
+Now, since index addition and subtraction is performed over a space where we have identified $J$ and $0$, and add modulo $J$, we want to consider the terms $x_jx_{j+1}x_{j-1}$ and  $- x_{j-2}x_{j-1}x_j$. Since each of these terms is a product of the three $x_j$ for consecutive values of $j$, their sum over all $j\in \{1,2,\ldots , J\}$ is equal, and hence they cancel out. This leaves us with
+\[
+\begin{aligned}
+\dfrac{dE}{dt} &= F\sum\limits_j x_j - \sum\limits_j x_j^2\\
+&= -2E + F\sum\limits_j x_j,
+\end{aligned}
+\]
+which is the desired result.
+\end{proof}
+\subsection*{6(b)} Code is attached to the back of this assignment (integration routine is \url{boost::numeric::odeint::runge_kutta54_cash_karp}). The final timestep has the following values for the $x_j$, in order from $j=1$ to $J$, to two digist of precision:\\
+\[ \mathbf{x} = (-1.5, 1.2, -0.54, 0.15, 1.1, 5.5, 1.1\cdot 10^1, -2.3, -0.37, 4.2) \]
 \end{document}
