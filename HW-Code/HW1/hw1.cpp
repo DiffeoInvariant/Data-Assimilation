@@ -29,7 +29,7 @@ void time_differentiate(const state_t& x, state_t& dxdt, const double /* type pa
 	//precondition: x and dx/dt have the same length
 	assert(J == dxdt.size());
 	
-	int bound = static_cast<long long>(J);
+	auto bound = static_cast<long long>(J);
 
 	double F = 8;
 
