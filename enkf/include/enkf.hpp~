@@ -1,0 +1,48 @@
+#ifndef ENKF_HPP
+#define ENKF_HPP
+
+#include <Eigen/Core>
+#include <Eigen/Dense>
+#include <vector>
+
+namespace fastmath
+{
+  using Vec = Eigen::VectorXd;
+  using Mat = Eigen::MatrixXd;
+
+  template<class State_t, class Obs_t, class ObsOp_t>
+  class EnKF
+  {
+  public:
+    
+    EnKF() {};
+
+    //filter with one observation
+    virtual void filter(const Obs_t& y);
+
+    virtual Obs_t observe(const State_t& x);
+
+    template<typename... ForecastArgs>
+    virtual State_t forecast(const State_t& x, const ForecastArgs& args...);
+
+    virtual ~EnKF() {};
+  };
+
+  //scalar EnKF with linear observations
+  
+
+    
+
+    
+   
+
+
+  };
+
+
+
+
+
+
+}//namespace fastmath
+#endif

@@ -1,0 +1,19 @@
+import numpy as np
+
+if __name__ =='__main__':
+    x = 2 ** 0.5 * np.array([[1.0 1,0,0.0],[-1.0,0.0, 1.0],[0.0,-1.0,-1.0]])
+
+    H = np.eye(3)
+    R = np.eye(3)
+
+    xdelta = x - x.mean(axis=0, keepdims=True)
+
+    B = 0.5 * xdelta.T @ xdelta
+
+    #H is identity
+    K = B @ np.linalg.inv(B + R)
+
+    #again, H is identity
+    C = (H - K) @ B
+
+    print("Posterior covariance: ", C)

@@ -1,0 +1,19 @@
+#include "enkf.hpp"
+#include <Eigen/Core>
+
+using Vec = Eigen::VectorXd;
+
+Vec Henon_Map(Vec x, double a, double b){
+  auto xn = x[0];
+  auto yn = x[1];
+
+  x[0] = 1 - a * xn * xn + yn;
+  x[1] = b * xn;
+
+  return x;
+}
+
+int main(int argc, char** argv){
+  using namespace fastmath;
+
+  
