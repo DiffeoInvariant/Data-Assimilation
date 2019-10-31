@@ -1,0 +1,11 @@
+[package]
+name = "enkf"
+version = "0.1.0"
+authors = ["Zane Jakobs <zane.jakobs@colorado.edu>"]
+edition = "2019"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+nalgebra = "0.18.2"
+rand_distr = "0.2.2"
